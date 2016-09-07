@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e -x
 
+SERVER_VERSION="12.8.0"
+SERVER_SHA1="4111123ba0c869e26a069f6d4625ad193e27ec99"
+CLIENT_VERSION="12.12.13"
+CLIENT_SHA1="e4db4a79ea6d8dac04829a13b489df77085a067e"
+
 # Temporary work dir
 tmpdir="`mktemp -d`"
 cd "$tmpdir"
@@ -11,15 +16,15 @@ apt-get update -q --yes
 apt-get install -q --yes logrotate vim-nox hardlink wget ca-certificates
 
 # Download and install Chef's packages
-wget -nv https://web-dl.packagecloud.io/chef/stable/packages/ubuntu/trusty/chef-server-core_12.4.1-1_amd64.deb
-wget -nv https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/10.04/x86_64/chef_12.7.2-1_amd64.deb
+wget -nv --no-check-certificate https://packages.chef.io/stable/ubuntu/14.04/chef-server-core_${SERVER_VERSION}-1_amd64.deb
+wget -nv --no-check-certificate https://packages.chef.io/stable/ubuntu/14.04/chef_${CLIENT_VERSION}-1_amd64.deb
 
 sha1sum -c - <<EOF
-a75e8dbcce749adf61a60ca0ccf25fc041e4774a  chef-server-core_12.4.1-1_amd64.deb
-9bc701d90ba12c71fbe51a8bdcdf25e864375f4e  chef_12.7.2-1_amd64.deb
+${SERVER_SHA1}  chef-server-core_${SERVER_VERSION}-1_amd64.deb
+${CLIENT_SHA1}  chef_${CLIENT_VERSION}-1_amd64.deb
 EOF
 
-dpkg -i chef-server-core_12.4.1-1_amd64.deb chef_12.7.2-1_amd64.deb
+dpkg -i chef-server-core_${SERVER_VERSION}-1_amd64.deb chef_${CLIENT_VERSION}-1_amd64.deb
 
 # Extra setup
 rm -rf /etc/opscode
