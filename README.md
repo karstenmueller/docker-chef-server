@@ -2,12 +2,12 @@ Chef Server
 ===========
 
 This image runs
-[Chef Server 12](https://downloads.getchef.com/chef-server/). The
-latest version is published as `quay.io/3ofcoins/chef-server:latest`. Version
-tags are available; current one is `quay.io/3ofcoins/chef-server:12.8.0`.
+[Chef Server 12.8.0](https://downloads.getchef.com/chef-server/). The
+latest version is published as `lookitup4me/chef-server:latest`. Version
+tags are available; current one is `lookitup4me/chef-server:12.8.0`.
 
 Git repository containing the Dockerfile lives at
-https://github.com/3ofcoins/docker-chef-server/
+https://github.com/lookitup4me/docker-chef-server/
 
 Environment Variables
 ---------------------

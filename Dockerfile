@@ -1,7 +1,7 @@
 # -*- conf -*-
 
-FROM ubuntu:14.04
-MAINTAINER Maciej Pasternacki <maciej@3ofcoins.net>
+FROM ubuntu:16.04
+MAINTAINER John Varghese <lookitup4me@gmail.com>
 
 EXPOSE 80 443
 VOLUME /var/opt/opscode
