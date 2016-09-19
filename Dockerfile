@@ -1,6 +1,6 @@
 # -*- conf -*-
 
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER John Varghese <lookitup4me@gmail.com>
 
 EXPOSE 80 443
