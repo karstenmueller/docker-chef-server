@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 
 : ${KNIFE_HOME:=/etc/chef}
 export KNIFE_HOME
@@ -7,12 +6,15 @@ export KNIFE_HOME
 ts=$(date -u +%Y%m%dT%H%M%SZ)
 destdir=/var/opt/opscode/backup/$ts
 
+set -eE
+trap "mv $destdir ${destdir}-FAILED; exit 1" ERR
+
 mkdir -p $destdir
 cd $destdir
 
 mkdir users
 for user in $(chef-server-ctl user-list) ; do
-    chef-server-ctl user-show -l -F json $user > users/$user.json
+    chef-server-ctl user-show -F json $user > users/$user.json
 done
 
 mkdir organizations
